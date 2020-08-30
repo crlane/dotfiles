@@ -93,8 +93,6 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 # # export KEYTIMEOUT=2
 
-# The next line updates PATH for the Google Cloud SDK so that asdf can be used for python
-export CLOUDSDK_PYTHON=/usr/bin/python
 export EDITOR=vim
 
 if [ -f ~/.fzf.zsh ]

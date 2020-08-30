@@ -1,9 +1,10 @@
 " Cameron Lane's .vimrc customization file
-" Last change: 2017-07-04
+" Last change: 2020-08-30
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -160,7 +161,7 @@ let g:airline_section_z = '%3l/%L:%2c'
 " vim-gist
 let g:gist_post_private = 1
 let g:gist_show_privates = 1
-let g:gist_api_url = 'https://github.atl.pdrop.net/api/v3'
+" let g:gist_api_url = 'https://my_company.com/api/v3'
 let g:gist_use_password_in_gitconfig = 0
 if executable('pbcopy')
     let g:gist_clip_command = 'pbcopy'
