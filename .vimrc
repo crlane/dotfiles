@@ -24,9 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'pangloss/vim-javascript'
     Plug 'rust-lang/rust.vim', {'for': 'rust'}
     Plug 'Rykka/riv.vim', {'for': 'rst'}
-    Plug 'saltstack/salt-vim', {'for': 'sls'}
-    Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'Valloric/YouCompleteMe'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'Valloric/YouCompleteMe', { 'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.py' }
     Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
