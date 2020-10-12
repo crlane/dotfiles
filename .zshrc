@@ -53,6 +53,15 @@ plugins=(git docker jsontools kubectl asdf exercism)
 
 # User configuration
 
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin:$HOME/src/go/bin"
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/src
+# source /usr/local/bin/virtualenvwrapper.sh
+
+#
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -93,23 +102,36 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 # # export KEYTIMEOUT=2
 
+# The next line updates PATH for the Google Cloud SDK so that asdf can be used for python
+export CLOUDSDK_PYTHON=/usr/bin/python
+export TERMINAL=urxvt
 export EDITOR=vim
 
-if [ -f ~/.fzf.zsh ]
-then
-    source ~/.fzf.zsh
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-fi
-#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # kubernetes prompt
-if [ -f "$HOME/src/kube-ps1/kube-ps1.sh" ]
-then
-    . "$HOME/src/kube-ps1/kube-ps1.sh"
-fi
-
+# source "$HOME/src/kube-ps1/kube-ps1.sh"
 if [ -f "$HOME/.asdf/asdf.sh" ];
 then
     . $HOME/.asdf/asdf.sh
     . $HOME/.asdf/completions/asdf.bash
-    PROMPT='(py|$(asdf current python | grep -Po "(system|^(\b\d+\.?){1,3}\b)")) $(kube_ps1)'\ $PROMPT
 fi
+
+## link for go
+# export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# export PATH="$(yarn global bin):$PATH"
+
+# PROMPT='(py|$(asdf current python | grep -Po "(system|^(\b\d+\.?){1,3}\b)")) $(kube_ps1)'\ $PROMPT
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/vault vault
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+eval "$(starship init zsh)" || true
+
+# A shortcut for asdf managed direnv.
+direnv() { asdf exec direnv "$@"; }
+# Hook direnv into your shell.
+eval "$(direnv hook zsh)"
