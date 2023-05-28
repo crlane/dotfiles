@@ -1,5 +1,9 @@
 # use zsh
+{{ if eq .chezmoi.os "darwin" }}
+set-option -g default-shell /bin/zsh
+{{ else }}
 set-option -g default-shell /usr/bin/zsh
+{{- end }}
 # source-file ~/.tmuxline.tmux.conf
 unbind-key C-b
 set-option -g prefix C-a

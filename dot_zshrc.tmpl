@@ -112,10 +112,6 @@ export TERMINAL=urxvt
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-{{ if eq .chezmoi.os "darwin" }}
-. "$(brew --prefix asdf)/libexec/asdf.sh"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-{{ else }}
 if [ -f "$HOME/.asdf/asdf.sh" ];
 then
     . $HOME/.asdf/asdf.sh
