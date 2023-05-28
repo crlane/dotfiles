@@ -1,8 +1,8 @@
 [user]
 	name = Cameron Lane
-	email = crlane@adamanteus.com
+	email = {{ .email | quote }}
 [core]
-	excludesfile = /home/crlane/.gitignore_global
+	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [pull]
 	rebase = true
@@ -20,3 +20,5 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[init]
+	defaultBranch = main

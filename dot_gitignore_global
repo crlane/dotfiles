@@ -62,7 +62,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -157,4 +157,10 @@ ENV/
 *.ogg
 
 #
-node_modules/
+**/node_modules/
+
+##bibtex
+*.aux
+*.bbl
+*.blg
+*.out
