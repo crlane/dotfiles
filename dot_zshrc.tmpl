@@ -52,9 +52,9 @@ CASE_SENSITIVE="true"
 
 
 {{ if eq .chezmoi.os "darwin" }}
-plugins=(git colorize asdf brew osx)
+plugins=(git colorize brew osx)
 {{ else }}
-plugins=(git colorize asdf)
+plugins=(git colorize)
 {{- end }}
 
 # User configuration
@@ -112,15 +112,18 @@ export TERMINAL=urxvt
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
+{{ if eq .chezmoi.os "darwin" }}
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+{{ else }}
 if [ -f "$HOME/.asdf/asdf.sh" ];
 then
     . $HOME/.asdf/asdf.sh
-    . $HOME/.asdf/completions/asdf.bash
+    # append completions to fpath
+    fpath=(${ASDF_DIR}/completions $fpath)
+    # initialise completions with ZSH's compinit
+    autoload -Uz compinit && compinit
 fi
-
-{{ if eq .chezmoi.os "darwin" }}
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 {{- end }}
 
 # A shortcut for asdf managed direnv.
