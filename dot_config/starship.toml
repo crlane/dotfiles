@@ -1,0 +1,29 @@
+add_newline = false
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[ruby]
+symbol = "💎"
+disabled = false
+
+[python]
+symbol	= "🐍"
+disabled = false
+
+[rust]
+symbol = "🦀"
+disabled = false
+
+[kubernetes]
+style = "dimmed green"
+disabled = false
+
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "k3s"
+
+[conda]
+disabled = false
