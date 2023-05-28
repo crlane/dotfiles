@@ -36,7 +36,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
 
     " Search
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
     " Motion, Snippets, and Completion
@@ -259,7 +259,7 @@ let g:rustfmt_fail_silently = 0
 " fzf.vim
 nnoremap <C-p> :Files<cr>
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = '/usr/bin/rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--disabled', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
