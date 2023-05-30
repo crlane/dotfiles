@@ -1,5 +1,6 @@
-
-{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $email := promptStringOnce . "email" "crlane@adamanteus.com" -}}
+{{- $role := promptStringOnce . "role" "personal|work-aws" -}}
 
 [data]
     email = {{ $email | quote }}
+    role = {{ $role | quote }}

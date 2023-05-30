@@ -4,6 +4,13 @@
 [core]
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
+{{ if eq .role "work-aws" }}
+[credential]
+	helper = !aws --profile eec codecommit credential-helper $@
+	# helper = !aws --profile dev codecommit credential-helper $@
+	# helper = !aws --profile eec-gc --region us-gov-west-1 codecommit credential-helper $@
+    useHttpPath = true
+{{- end }}
 [pull]
 	rebase = true
 [color]
@@ -22,3 +29,5 @@
 	whitespace = red reverse
 [init]
 	defaultBranch = main
+[alias]
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
