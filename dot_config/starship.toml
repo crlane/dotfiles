@@ -26,4 +26,4 @@ disabled = false
 "dev.local.cluster.k8s" = "k3s"
 
 [conda]
-disabled = false
+disabled = true

@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
 
     " Linting and Static Analysis
     Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
-
+    Plug 'dense-analysis/ale'
 
     " Language servers
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'justinmk/vim-sneak'
     Plug 'neoclide/coc-snippets'
     Plug 'tomtom/tcomment_vim'
-    " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'Valloric/YouCompleteMe'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'Valloric/YouCompleteMe'
 
     " Appearance
     Plug 'edkolev/tmuxline.vim'
@@ -112,6 +112,8 @@ filetype indent on
 " useful for when you're working on your vimrc or using the -u option to load
 " alternate vimrc
 set nocompatible
+
+set re=0 " use a newer regular expression engine: https://jameschambers.co.uk/vim-typescript-slow
 
 set encoding=utf-8                      " always work with unicode files
 set fileencoding=utf-8                  " always work with unicode files
@@ -237,14 +239,15 @@ match ExtraWhitespace /\s\+$/
 " let g:go_fmt_command = substitute(expand(system('which goimports')), '\n', '', '')
 
 " ALE https://github.com/w0rp/ale
-" let g:ale_python_flake8_executable = substitute(expand(system('which pylint')), '\n', '', '')
-" let g:ale_nodejs_eslint_executable = substitute(expand(system('which eslint')), '\n', '', '')
-" let g:ale_completion_enabled = 0
-" let g:ale_fixers = {
-" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-" \   'javascript': ['eslint', 'prettier'],
-" \}
-" let g:ale_fix_on_save = 1
+let g:ale_python_flake8_executable = substitute(expand(system('which pylint')), '\n', '', '')
+let g:ale_nodejs_eslint_executable = substitute(expand(system('which eslint')), '\n', '', '')
+let g:ale_completion_enabled = 0
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint', 'prettier'],
+\}
+let g:ale_fix_on_save = 1
+
 " nmap <silent> <C-p> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-n> <Plug>(ale_next_wrap)
 
