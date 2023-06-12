@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'justinmk/vim-sneak'
     Plug 'neoclide/coc-snippets'
     Plug 'tomtom/tcomment_vim'
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'Valloric/YouCompleteMe'
+    Plug 'honza/vim-snippets'
 
     " Appearance
     Plug 'edkolev/tmuxline.vim'
@@ -74,27 +74,27 @@ nnoremap <silent> <C-k> :wincmd k<cr>
 nnoremap <silent> <C-l> :wincmd l<cr>
 
 " Clear screen highlighting
-map <silent> <Leader><Leader> :noh<cr>
+map <silent> <leader><leader> :noh<cr>
 
 " Diff put/get for fugitive
-nmap <Leader>u :diffput<cr>
-nmap <Leader>g :diffget<cr>
+nmap <leader>u :diffput<cr>
+nmap <leader>g :diffget<cr>
 
 " copy to system clipboard
-xnoremap <Leader>y "*y
+xnoremap <leader>y "*y
 
 " cut to system clipboard
-xnoremap <Leader>d "*d
+xnoremap <leader>d "*d
 
 " paste from system clipboard
-nmap <Leader>p <F7>"+p<F7>
-noremap <Leader>P <F7>"+P<F7>
+nmap <leader>p <F7>"+p<F7>
+noremap <leader>P <F7>"+P<F7>
 
 " fix python tracebacks
-nnoremap <Leader>tb :%s/#012/\r/ge<cr>
+nnoremap <leader>tb :%s/#012/\r/ge<cr>
 
 " fix trailing whitespace
-nnoremap <Leader>ws :%s/\s\+$//e<cr>
+nnoremap <leader>ws :%s/\s\+$//e<cr>
 
 " shortcuts
 " noremap <F5> :! pdflatex %<cr>
@@ -113,8 +113,7 @@ filetype indent on
 " alternate vimrc
 set nocompatible
 
-set re=0 " use a newer regular expression engine: https://jameschambers.co.uk/vim-typescript-slow
-
+set re=0                                " use a newer regular expression engine: https://jameschambers.co.uk/vim-typescript-slow
 set encoding=utf-8                      " always work with unicode files
 set fileencoding=utf-8                  " always work with unicode files
 set backspace=indent,eol,start          " allow backspacing over everything in insert mode
@@ -144,6 +143,58 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 
+" coc.nvim settings
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -186,19 +237,19 @@ autocmd FileType go setlocal tabstop=4
 au! BufNewFile,BufRead *.svelte set ft=html
 
 " Go vim specific bindings
-au FileType go nmap <Leader>gr <Plug>(go-run)
-au FileType go nmap <Leader>gb <Plug>(go-build)
-au FileType go nmap <Leader>gt <Plug>(go-test)
-au FileType go nmap <Leader>gc <Plug>(go-coverage)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gc <Plug>(go-coverage)
+au FileType go nmap <leader>gd <Plug>(go-doc)
+au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
 
 " Rust vim specific bindings
-au FileType rust nmap <Leader>rr <Plug>(rust-run)
-au FileType rust nmap <Leader>rb <Plug>(rust-build)
-au FileType rust nmap <Leader>rt :RustTest<cr>
-au FileType rust nmap <Leader>rc <Plug>(rust-coverage)
-au FileType rust nmap <Leader>rd <Plug>(rust-doc)
+au FileType rust nmap <leader>rr <Plug>(rust-run)
+au FileType rust nmap <leader>rb <Plug>(rust-build)
+au FileType rust nmap <leader>rt :RustTest<cr>
+au FileType rust nmap <leader>rc <Plug>(rust-coverage)
+au FileType rust nmap <leader>rd <Plug>(rust-doc)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
