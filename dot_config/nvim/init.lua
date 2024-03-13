@@ -210,7 +210,7 @@ require("lazy").setup({
 		end
 	},
 	{
-	   'tpope/fugitive',
+	   'tpope/vim-fugitive',
 	   cmd = "Git"
 	},
 	{
