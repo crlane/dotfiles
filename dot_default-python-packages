@@ -1,4 +1,4 @@
 ipdb
 pytest
-flake8
+ruff-lsp
 jupyterlab

@@ -2,3 +2,5 @@ prettier
 eslint
 yarn
 diff-so-fancy
+typescript
+typescript-language-server
