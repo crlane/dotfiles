@@ -2,6 +2,7 @@
 alias zshconfig="vi ~/.zshrc"
 alias vi=nvim
 alias vim=nvim
+alias moi=chezmoi
 {{ if eq .chezmoi.os "darwin" }}
 # use the homebrew tools version of sed
 alias sed="gsed"
@@ -10,15 +11,12 @@ alias sed="gsed"
 # EXPORTS
 export EDITOR=nvim
 export GPG_TTY=$(tty)
-# User configuration
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:$PATH
-{{- end }}
+{{- end -}}
 {{ if eq .role "work-aws" }}
 export PATH=$HOME/.toolbox/bin:$PATH
-{{- end }}
-
-# You may need to manually set your language environment
+{{- end -}}
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -32,7 +30,6 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
-
 
 # shell customization
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

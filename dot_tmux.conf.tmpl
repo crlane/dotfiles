@@ -3,8 +3,9 @@
 set-option -g default-shell /bin/zsh
 {{ else }}
 set-option -g default-shell /usr/bin/zsh
+set-option -g update-environment "DISPLAY WAYLAND_DISPLAY SWAYSOCK SSH_AUTH_SOCK"
 {{- end }}
-# source-file ~/.tmuxline.tmux.conf
+if-shell "test -f ~/.tmuxline.tmux.conf" "source ~/.tmuxline.tmux.conf"
 unbind-key C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix

@@ -21,7 +21,6 @@ vim.keymap.set('i', 'jj', '<Esc>', options)
 
 -- <leader>p will paste clipboard into buffer
 -- <leader>c will copy entire buffer into clipboard
--- TODO: set pastemode first
 if vim.fn.has('wl-paste') then
 vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
 vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
@@ -148,6 +147,13 @@ require("lazy").setup({
           vim.cmd.colorscheme 'solarized'
         end,
     }, 
+    -- nice bar at the bottom
+    {
+        'edkolev/tmuxline.vim',
+        config = function() 
+
+        end
+    },
     -- nice bar at the bottom
     {
         'itchyny/lightline.vim',
