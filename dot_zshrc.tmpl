@@ -9,16 +9,18 @@ alias sed="gsed"
 {{- end }}
 
 # EXPORTS
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 export GPG_TTY=$(tty)
 {{ if eq .chezmoi.os "darwin" }}
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/opt/homebrew/bin:$PATH
 {{- end -}}
 {{ if eq .role "work-aws" }}
 export PATH=$HOME/.toolbox/bin:$PATH
-{{- end -}}
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+{{- end }}
+export PATH=$HOME/bin:$PATH
 
 # use vim keybindings
 # # see http://dougblack.io/words/zsh-vi-mode.html
