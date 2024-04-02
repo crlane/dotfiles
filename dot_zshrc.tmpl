@@ -1,6 +1,5 @@
 # shell initialization
-autoload -Uz compaudit compinit
-
+# autoload -Uz compaudit compinit
 # Aliases
 alias zshconfig="vi ~/.zshrc"
 alias vi=nvim
@@ -10,6 +9,10 @@ alias moi=chezmoi
 # use the homebrew tools version of sed
 alias sed="gsed"
 {{- end }}
+alias ll="ls -lFGh"
+alias la="ls -lAFGh"
+alias ltn="ls -lFGt"
+alias lto="ls -lFGtr"
 
 # EXPORTS
 export LANG=en_US.UTF-8
@@ -17,7 +20,6 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 export GPG_TTY=$(tty)
 {{ if eq .chezmoi.os "darwin" }}
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/opt/homebrew/bin:$PATH
 {{- end -}}
 {{ if eq .role "work-aws" }}
