@@ -22,11 +22,11 @@ vim.keymap.set('i', 'jj', '<Esc>', options)
 -- <leader>p will paste clipboard into buffer
 -- <leader>c will copy entire buffer into clipboard
 if vim.fn.has('wl-paste') then
-vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
-vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
+    vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
+    vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
 elseif vim.fn.has('pbcopy') then
-vim.keymap.set('n', '<leader>p', '<cmd>read !pbpaste<cr>')
-vim.keymap.set('n', '<leader>c', '<cmd>w !pbcopy<cr><cr>')
+    vim.keymap.set('n', '<leader>p', '<cmd>read !pbpaste<cr>')
+    vim.keymap.set('n', '<leader>c', '<cmd>w !pbcopy<cr><cr>')
 end
 
 -- <leader><leader> to stop searching
@@ -100,8 +100,6 @@ vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,di
 -------------------------------------------------------------------------------
 -- leave paste mode when leaving insert mode (if it was on)
 vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
-
-
 --
 -------------------------------------------------------------------------------
 --
@@ -325,6 +323,47 @@ require("lazy").setup({
                 lspconfig.bash_lsp.setup {}
             end
 
+            -- Zig
+			-- don't show parse errors in a separate window
+            vim.g.zig_fmt_parse_errors = 0
+            -- disable format-on-save from `ziglang/zig.vim`
+            vim.g.zig_fmt_autosave = 0
+            -- enable  format-on-save from nvim-lspconfig + ZLS
+            --
+            -- Formatting with ZLS matches `zig fmt`.
+            -- The Zig FAQ answers some questions about `zig fmt`:
+            -- https://github.com/ziglang/zig/wiki/FAQ
+            vim.api.nvim_create_autocmd('BufWritePre',{
+              pattern = {"*.zig", "*.zon"},
+              callback = function(ev)
+                vim.lsp.buf.format()
+              end
+            })
+            lspconfig.zls.setup {
+              -- Server-specific settings. See `:help lspconfig-setup`
+
+              -- omit the following line if `zls` is in your PATH
+              -- cmd = { '/path/to/zls_executable' },
+              -- There are two ways to set config options:
+              --   - edit your `zls.json` that applies to any editor that uses ZLS
+              --   - set in-editor config options with the `settings` field below.
+              --
+              -- Further information on how to configure ZLS:
+              -- https://zigtools.org/zls/configure/
+              settings = {
+                zls = {
+                  -- Whether to enable build-on-save diagnostics
+                  --
+                  -- Further information about build-on save:
+                  -- https://zigtools.org/zls/guides/build-on-save/
+                  -- enable_build_on_save = true,
+
+                  -- omit the following line if `zig` is in your PATH
+                  -- zig_exe_path = '/path/to/zig_executable'
+                }
+              }
+            }   
+
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
@@ -434,6 +473,11 @@ require("lazy").setup({
         end
     },
     -- language support
+    -- zig
+    {
+      'ziglang/zig',
+      ft = {"zig"}
+    },
     -- terraform
     {
         'hashivim/vim-terraform',

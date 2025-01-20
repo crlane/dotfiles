@@ -31,3 +31,13 @@
 	defaultBranch = main
 [alias]
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+[help]
+    autocorrect = 10
+[diff]
+    algorithm = histogram
+[branch]
+    sort = -committerdate
+[push]
+    autoSetupRemote = true
+# [merge]
+#     conflictstyle = zdiff3
