@@ -271,12 +271,12 @@ require("lazy").setup({
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             -- typescript
-            lspconfig.tsserver.setup{
+            lspconfig.ts_ls.setup{
                 capabilities = capabilities,
             }
             
             -- python
-            lspconfig.ruff_lsp.setup{
+            lspconfig.ruff.setup{
                 capabilities = capabilities,
             }
 
