@@ -39,6 +39,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 export GPG_TTY=$(tty)
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf/shims}":$PATH
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:$PATH
 {{- end -}}
@@ -61,15 +62,6 @@ bindkey '^r' history-incremental-search-backward
 # shell customization
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-
-if [ -f "$HOME/.asdf/asdf.sh" ];
-then
-    . $HOME/.asdf/asdf.sh
-    # append completions to fpath
-    fpath=(${ASDF_DIR}/completions $fpath)
-    # initialise completions with ZSH's compinit
-    autoload -Uz compinit && compinit
-fi
 
 # Hook direnv into your shell.
 eval "$(direnv hook zsh)"
