@@ -1,5 +1,4 @@
 # shell initialization
-autoload -Uz compaudit compinit
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
@@ -33,12 +32,18 @@ alias ltn="ls -lFGt"
 alias lto="ls -lFGtr"
 alias bc="bc -li"
 alias zb="zig build"
+alias zbt="zig build test"
+
+# COMPLETIONS
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+autoload -Uz compinit && compinit
 
 # EXPORTS
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 export GPG_TTY=$(tty)
+# PATHS
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf/shims}":$PATH
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:$PATH
@@ -63,7 +68,7 @@ bindkey '^r' history-incremental-search-backward
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# Hook direnv into your shell.
-eval "$(direnv hook zsh)"
-eval "$(starship init zsh)" || true
-eval "$(zoxide init --cmd cd zsh)" || true
+# Hook tools into your shell.
+[ -f "$(which direnv)" ] && eval "$(direnv hook zsh)" || true
+[ -f "$(which starship)" ] && eval "$(starship init zsh)" || true
+[ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
