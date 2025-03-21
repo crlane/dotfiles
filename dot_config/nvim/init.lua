@@ -275,6 +275,11 @@ require("lazy").setup({
                 capabilities = capabilities,
             }
             
+            -- lua 
+            lspconfig.lua_ls.setup{
+                capabilities = capabilities,
+            }
+            
             -- python
             lspconfig.ruff.setup{
                 capabilities = capabilities,
