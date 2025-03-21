@@ -5,7 +5,7 @@
 From a new machine, and assuming you have `asdf` installed:
 
 1. Install chezmoi with asdf:
-`asdf plugin add chezmoi && asdf install chezmoi latest && asdf global chezmoi latest`
+`asdf plugin add chezmoi && asdf install chezmoi latest && asdf set -u chezmoi latest`
 
 1. chezmoi init $GITHUB_USERNAME/dotfiles.git
 

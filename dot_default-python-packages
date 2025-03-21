@@ -1,4 +1,5 @@
 ipdb
 pytest
+pytest-cov
 ruff-lsp
 jupyterlab
