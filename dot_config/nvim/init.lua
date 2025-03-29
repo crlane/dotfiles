@@ -2,7 +2,6 @@ local vim = vim;
 --  KeyMappings ------------------
 -- remap leader to spacebar
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
-
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -31,8 +30,8 @@ elseif vim.fn.has('pbcopy') then
 end
 
 -- <leader><leader> to stop searching
-vim.keymap.set('v', '<space><space>', '<cmd>nohlsearch<cr>')
-vim.keymap.set('n', '<space><space>', '<cmd>nohlsearch<cr>')
+vim.keymap.set('v', '<leader><leader>', '<cmd>nohlsearch<cr>')
+vim.keymap.set('n', '<leader><leader>', '<cmd>nohlsearch<cr>')
 
 -- better window navigation
 local options = { silent = true, noremap = true }
