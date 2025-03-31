@@ -36,6 +36,7 @@ alias zbt="zig build test"
 
 # COMPLETIONS
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+fpath=(${XDG_CONFIG_DIRS/uv:-$HOME/.config/uv}/completions $fpath)
 autoload -Uz compinit && compinit
 
 # EXPORTS
