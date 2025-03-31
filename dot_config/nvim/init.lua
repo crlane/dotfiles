@@ -93,6 +93,7 @@ vim.opt.wildmode = 'list:longest'
 -- when opening a file with a command (like :e),
 -- don't suggest files like there:
 vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
+vim.opt.laststatus = 3
 -------------------------------------------------------------------------------
 --
 -- autocommands
