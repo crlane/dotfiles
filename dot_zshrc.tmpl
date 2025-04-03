@@ -71,6 +71,5 @@ bindkey '^r' history-incremental-search-backward
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 # Hook tools into your shell.
-[ -f "$(which direnv)" ] && eval "$(direnv hook zsh)" || true
 [ -f "$(which starship)" ] && eval "$(starship init zsh)" || true
 [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
