@@ -17,6 +17,7 @@ node = 'lts'
 "aqua:BurntSushi/ripgrep" = "latest"
 "aqua:ClementTsang/bottom" = "latest"
 "aqua:ajeetdsouza/zoxide" = "latest"
+"aqua:starship/starship" = "latest"
 zls = "latest"
 # "npm:prettier" = "latest"
 # "npm:eslint" = "latest"
