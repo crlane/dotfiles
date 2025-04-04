@@ -1,0 +1,26 @@
+[settings]
+python.uv_venv_auto = true
+python.default_packages_file = "~/.default-python-packages"
+disable_backends = [ "pipx" ]
+
+[tools]
+uv = 'latest'
+bun = 'latest'
+golang = 'latest'
+python = 'latest'
+chezmoi = 'latest'
+zig = 'latest'
+lua-language-server = 'latest'
+shellcheck = 'latest'
+rust = 'stable'
+node = 'lts'
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:ClementTsang/bottom" = "latest"
+"aqua:ajeetdsouza/zoxide" = "latest"
+zls = "latest"
+# "npm:prettier" = "latest"
+# "npm:eslint" = "latest"
+# "npm:diff-so-fancy" = "latest"
+# "npm:typescript" = "latest"
+# "npm:typescript-language-server" = "latest"
+# "npm:bash-language-server" = "latest"

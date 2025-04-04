@@ -36,7 +36,6 @@ alias zbt="zig build test"
 alias g=git
 
 # COMPLETIONS
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 fpath=(${XDG_CONFIG_DIRS/uv:-$HOME/.config/uv}/completions $fpath)
 autoload -Uz compinit && compinit
 
@@ -46,7 +45,6 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 export GPG_TTY=$(tty)
 # PATHS
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf/shims}":$PATH
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:$PATH
 {{- end -}}
@@ -71,5 +69,6 @@ bindkey '^r' history-incremental-search-backward
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 # Hook tools into your shell.
+[ -f "$(which mise)" ] && eval "$(mise activate zsh)" || true
 [ -f "$(which starship)" ] && eval "$(starship init zsh)" || true
 [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
