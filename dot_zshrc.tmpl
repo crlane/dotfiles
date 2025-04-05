@@ -24,7 +24,8 @@ alias moi=chezmoi
 alias wa="watch -d"
 {{ if eq .chezmoi.os "darwin" }}
 # use the homebrew tools version of sed
-alias sed="gsed"
+alias pbp=pbpaste
+alias pbc=pbcopy
 {{- end }}
 alias ll="ls -lFGh"
 alias la="ls -lAFGh"
@@ -47,6 +48,7 @@ export GPG_TTY=$(tty)
 # PATHS
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:$PATH
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 {{- end -}}
 {{ if eq .role "work-aws" }}
 export PATH=$HOME/.toolbox/bin:$PATH
@@ -70,10 +72,13 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 # Hook tools into your shell.
 [ -f "$(which mise)" ] && eval "$(mise activate zsh)" || true
-[ -f "$(which starship)" ] && eval "$(starship init zsh)" || true
+[ -f "$(which starship)" ] && type starship_zle-keymap-select >/dev/null || \
+{
+    echo "Load starship"
+    eval "$($(which starship) init zsh)"
+}
 [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
 
 # additional completions
 eval "$(uv generate-shell-completion zsh)"
 eval "$(moi completion zsh)"
-
