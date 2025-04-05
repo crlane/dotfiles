@@ -101,6 +101,7 @@ vim.opt.laststatus = 3
 -------------------------------------------------------------------------------
 -- leave paste mode when leaving insert mode (if it was on)
 vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
+vim.api.nvim_create_augroup('AutoFormat', {})
 --
 -------------------------------------------------------------------------------
 --

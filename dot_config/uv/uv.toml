@@ -1,2 +1,2 @@
 python-downloads = "manual"
-python-preference = "system"
+python-preference = "managed"

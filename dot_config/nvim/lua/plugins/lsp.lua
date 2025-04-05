@@ -50,7 +50,7 @@ return {
                     default_config = {
                         cmd = { 'bash-language-server', 'start' },
                         filetypes = { 'sh' },
-                        root_dir = require('lspconfig').util.find_git_ancestor,
+                        root_dir = lspconfig.util.find_git_ancestor,
                         init_options = {
                             settings = {
                                 args = {}
@@ -59,8 +59,17 @@ return {
                     }
                 }
             end
+
             if configs.bash_lsp then
                 lspconfig.bash_lsp.setup {}
+                vim.api.nvim_create_autocmd('BufWritePre', {
+                  pattern = {"*.sh", "*.bash"},
+                  group = "AutoFormat",
+                  -- uses shfmt
+                  callback = function(_)
+                      vim.lsp.buf.format()
+                  end
+                })
             end
 
             -- Zig
@@ -75,7 +84,8 @@ return {
             -- https://github.com/ziglang/zig/wiki/FAQ
             vim.api.nvim_create_autocmd('BufWritePre',{
               pattern = {"*.zig", "*.zon"},
-              callback = function(ev)
+              group = "AutoFormat",
+              callback = function(_)
                 vim.lsp.buf.format()
               end
             })
@@ -121,7 +131,7 @@ return {
 
                     -- Buffer local mappings.
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
-                    local opts = { buffer = ev.buf }
+                    local opts = { buffer = ev.buf , desc = "LSP" }
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
                     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
