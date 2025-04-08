@@ -146,6 +146,24 @@ require("lazy").setup({
                 vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Normal mode keymaps' })
             end
         },
+        -- -- render markdown
+        -- {
+        --     'MeanderingProgrammer/render-markdown.nvim',
+        --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+        --     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        --     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        --     ---@module 'render-markdown'
+        --     ---@type render.md.UserConfig
+        --     opts = {},
+        -- },
+        {
+            "andrewferrier/wrapping.nvim",
+            config = function()
+                require("wrapping").setup({
+                    softener = { markdown = true, rst = true },
+                })
+            end
+        },
     },
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.

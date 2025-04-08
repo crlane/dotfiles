@@ -83,6 +83,8 @@ vim.opt.foldlevelstart = 99
 vim.opt.scrolloff = 2
 -- never show me line breaks if they're not there
 vim.opt.wrap = false
+vim.opt.textwidth = 79
+vim.opt.linebreak = true
 -- always draw sign column. prevents buffer moving when adding/deleting sign
 vim.opt.signcolumn = 'yes'
 vim.opt.background = 'dark'
