@@ -146,16 +146,6 @@ require("lazy").setup({
                 vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Normal mode keymaps' })
             end
         },
-        -- -- render markdown
-        -- {
-        --     'MeanderingProgrammer/render-markdown.nvim',
-        --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-        --     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-        --     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        --     ---@module 'render-markdown'
-        --     ---@type render.md.UserConfig
-        --     opts = {},
-        -- },
         {
             "andrewferrier/wrapping.nvim",
             config = function()
@@ -164,7 +154,53 @@ require("lazy").setup({
                 })
             end
         },
+        {
+            "stevearc/conform.nvim",
+            event = { "BufWritePre" },
+            cmd = { "ConformInfo" },
+            keys = {
+                {
+                    -- Customize or remove this keymap to your liking
+                    "<leader>f",
+                    function()
+                        require("conform").format({ async = true })
+                    end,
+                    mode = "",
+                    desc = "Format buffer",
+                },
+            },
+            -- This will provide type hinting with LuaLS
+            ---@module "conform"
+            ---@type conform.setupOpts
+            opts = {
+                -- Define your formatters
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+                    javascript = { "prettierd", "prettier", stop_after_first = true },
+                    rust = { "rustfmt" },
+                    golang = { "gofmt" },
+                },
+                -- Set default options
+                default_format_opts = {
+                    lsp_format = "fallback",
+                },
+                -- Set up format-on-save
+                format_on_save = { timeout_ms = 500 },
+                -- Customize formatters
+                formatters = {
+                    shfmt = {
+                        prepend_args = { "-i", "2" },
+                    },
+                },
+            },
+            init = function()
+                -- If you want the formatexpr, here is the place to set it
+                vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+            end,
+        }
     },
+
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
