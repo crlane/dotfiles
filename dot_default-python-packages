@@ -1,6 +1,6 @@
 ipdb
 pytest
 pytest-cov
-python-lsp-server[yapf]
-python-lsp-ruff
 ruff
+python-lsp-ruff
+python-lsp-server
