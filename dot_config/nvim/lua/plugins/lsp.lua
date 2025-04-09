@@ -169,7 +169,8 @@ return {
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = ev.buf, desc = "LSP Goto declartion" })
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation,
                         { buffer = ev.buf, desc = "LSP Goto implementation" })
-                    vim.keymap.set('n', 'gb', '<C-o>', { buffer = ev.buf, desc = "Go back in jumplist" })
+                    vim.keymap.set('n', 'gb', '<C-o>',
+                        { buffer = ev.buf, desc = "Go back in jumplist", nowait = true, noremap = true })
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP Hover" })
                     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
                         { buffer = ev.buf, desc = "LSP Signature Help" })
@@ -191,17 +192,6 @@ return {
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
                     end, { buffer = ev.buf, desc = "LSP format" })
-
-                    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-                    -- When https://neovim.io/doc/user/lsp.html#lsp-inlay_hint stabilizes
-                    -- *and* there's some way to make it only apply to the current line.
-                    if client.server_capabilities.inlayHintProvider then
-                        vim.lsp.inlay_hint(ev.buf, true)
-                    end
-
-                    -- None of this semantics tokens business.
-                    -- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
-                    -- client.server_capabilities.semanticTokensProvider = nil
                 end,
             })
         end
