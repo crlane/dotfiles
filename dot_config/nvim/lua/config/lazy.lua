@@ -2,208 +2,215 @@
 local vim = vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
 
 -- Setup lazy.nvim
 require("lazy").setup({
-    spec = {
-        -- import your plugins
-        { import = "plugins" },
-        -- Git support
-        {
-            'tpope/vim-fugitive',
-            cmd = "Git"
-        },
-        {
-            'airblade/vim-gitgutter',
-        },
-        {
-            'numToStr/Comment.nvim',
-            opts = {
-                -- add any options here
-            }
-        },
-        -- nice bar at the bottom
-        {
-            'edkolev/tmuxline.vim',
-            config = function()
+  spec = {
+    -- import your plugins
+    { import = "plugins" },
+    -- Git support
+    {
+      'tpope/vim-fugitive',
+      cmd = "Git"
+    },
+    {
+      'airblade/vim-gitgutter',
+    },
+    {
+      'numToStr/Comment.nvim',
+      opts = {
+        -- add any options here
+      }
+    },
+    -- nice bar at the bottom
+    {
+      'edkolev/tmuxline.vim',
+      config = function()
 
-            end
-        },
-        -- nice bar at the bottom
-        {
-            'itchyny/lightline.vim',
-            lazy = false, -- also load at start since it's UI
-            config = function()
-                -- no need to also show mode in cmd line when we have bar
-                vim.o.showmode = false
-                vim.g.lightline = {
-                    colorscheme = "one",
-                    active = {
-                        left = {
-                            { 'mode',     'paste' },
-                            { 'readonly', 'filename', 'modified' }
-                        },
-                        right = {
-                            { 'lineinfo' },
-                            { 'percent' },
-                            { 'fileencoding', 'filetype' }
-                        },
-                    },
-                    component_function = {
-                        filename = 'LightlineFilename'
-                    },
-                }
-                function LightlineFilenameInLua(_)
-                    if vim.fn.expand('%:t') == '' then
-                        return '[No Name]'
-                    else
-                        return vim.fn.getreg('%')
-                    end
-                end
+      end
+    },
+    -- nice bar at the bottom
+    {
+      'itchyny/lightline.vim',
+      lazy = false, -- also load at start since it's UI
+      config = function()
+        -- no need to also show mode in cmd line when we have bar
+        vim.o.showmode = false
+        vim.g.lightline = {
+          colorscheme = "one",
+          active = {
+            left = {
+              { 'mode',     'paste' },
+              { 'readonly', 'filename', 'modified' }
+            },
+            right = {
+              { 'lineinfo' },
+              { 'percent' },
+              { 'fileencoding', 'filetype' }
+            },
+          },
+          component_function = {
+            filename = 'LightlineFilename'
+          },
+        }
+        function LightlineFilenameInLua(_)
+          if vim.fn.expand('%:t') == '' then
+            return '[No Name]'
+          else
+            return vim.fn.getreg('%')
+          end
+        end
 
-                -- https://github.com/itchyny/lightline.vim/issues/657
-                vim.api.nvim_exec(
-                    [[
+        -- https://github.com/itchyny/lightline.vim/issues/657
+        vim.api.nvim_exec(
+          [[
                 function! g:LightlineFilename()
                     return v:lua.LightlineFilenameInLua()
                 endfunction
                 ]],
-                    true
-                )
-            end
-        },
-        -- better %
-        {
-            'andymass/vim-matchup',
-            config = function()
-                vim.g.matchup_matchparen_offscreen = { method = "popup" }
-            end
-        },
-        -- auto-cd to root of git project
-        {
-            'notjedi/nvim-rooter.lua',
-            config = function()
-                require('nvim-rooter').setup()
-            end
-        },
-        {
-            'nvim-telescope/telescope.nvim',
-            tag = '0.1.6',
-            dependencies = { 'nvim-lua/plenary.nvim' },
-            config = function()
-                require('telescope').setup {
-                    defaults = {
-                        -- Default configuration for telescope goes here:
-                        -- config_key = value,
-                        mappings = {
-                            i = {
-                                -- map actions.which_key to <C-h> (default: <C-/>)
-                                -- actions.which_key shows the mappings for your picker,
-                                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                                -- ["<C-h>"] = "which_key"
-                            }
-                        }
-                    },
-                    pickers = {
-                        -- Default configuration for builtin pickers goes here:
-                        -- picker_name = {
-                        --   picker_config_key = value,
-                        --   ...
-                        -- }
-                        -- Now the picker_config_key will be applied every time you call this
-                        -- builtin picker
-                    },
-                    extensions = {
-                        -- Your extension configuration goes here:
-                        -- extension_name = {
-                        --   extension_config_key = value,
-                        -- }
-                        -- please take a look at the readme of the extension you want to configure
-                    }
-                }
-
-                local builtin = require('telescope.builtin')
-                vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
-                vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
-                vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = 'Telescope live grep' })
-                vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers' })
-                vim.keymap.set('n', '<leader>d', builtin.diagnostics, { desc = 'Telescope LSP Diagnostics' })
-                vim.keymap.set('n', '<leader>t', builtin.help_tags, { desc = 'Telescope help tags' })
-                vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Normal mode keymaps' })
-            end
-        },
-        {
-            "andrewferrier/wrapping.nvim",
-            config = function()
-                require("wrapping").setup({
-                    softener = { markdown = true, rst = true },
-                })
-            end
-        },
-        {
-            "stevearc/conform.nvim",
-            event = { "BufWritePre" },
-            cmd = { "ConformInfo" },
-            keys = {
-                {
-                    -- Customize or remove this keymap to your liking
-                    "<leader>f",
-                    function()
-                        require("conform").format({ async = true })
-                    end,
-                    mode = "",
-                    desc = "Format buffer",
-                },
-            },
-            -- This will provide type hinting with LuaLS
-            ---@module "conform"
-            ---@type conform.setupOpts
-            opts = {
-                -- Define your formatters
-                formatters_by_ft = {
-                    lua = { "stylua" },
-                    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
-                    javascript = { "prettierd", "prettier", stop_after_first = true },
-                    rust = { "rustfmt" },
-                    golang = { "gofmt" },
-                },
-                -- Set default options
-                default_format_opts = {
-                    lsp_format = "fallback",
-                },
-                -- Set up format-on-save
-                format_on_save = { timeout_ms = 500 },
-                -- Customize formatters
-                formatters = {
-                    shfmt = {
-                        prepend_args = { "-i", "2" },
-                    },
-                },
-            },
-            init = function()
-                -- If you want the formatexpr, here is the place to set it
-                vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-            end,
-        }
+          true
+        )
+      end
     },
+    -- better %
+    {
+      'andymass/vim-matchup',
+      config = function()
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end
+    },
+    -- auto-cd to root of git project
+    {
+      'notjedi/nvim-rooter.lua',
+      config = function()
+        require('nvim-rooter').setup()
+      end
+    },
+    {
+      'nvim-telescope/telescope.nvim',
+      event = 'VimEnter',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      },
+      config = function()
+        require('telescope').setup {}
+        -- See `:help telescope.builtin`
+        local builtin = require 'telescope.builtin'
+        vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = '[S]earch [F]iles' })
+        vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+        vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[ ] Find existing buffers' })
+        vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+        vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+        vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+        vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+        vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+        vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+        vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+        vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      end
+    },
+    {
+      "andrewferrier/wrapping.nvim",
+      config = function()
+        require("wrapping").setup({
+          softener = { markdown = true, rst = true },
+        })
+      end
+    },
+    {
+      "stevearc/conform.nvim",
+      event = { "BufWritePre" },
+      cmd = { "ConformInfo" },
+      keys = {
+        {
+          -- Customize or remove this keymap to your liking
+          "<leader>f",
+          function()
+            require("conform").format({ async = true })
+          end,
+          mode = "",
+          desc = "Format buffer",
+        },
+      },
+      -- This will provide type hinting with LuaLS
+      ---@module "conform"
+      ---@type conform.setupOpts
+      opts = {
+        -- Define your formatters
+        formatters_by_ft = {
+          lua = { "stylua" },
+          python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+          javascript = { "prettierd", "prettier", stop_after_first = true },
+          rust = { "rustfmt" },
+          golang = { "gofmt" },
+        },
+        -- Set default options
+        default_format_opts = {
+          lsp_format = "fallback",
+        },
+        -- Set up format-on-save
+        format_on_save = { timeout_ms = 500 },
+        -- Customize formatters
+        formatters = {
+          shfmt = {
+            prepend_args = { "-i", "2" },
+          },
+        },
+      },
+      init = function()
+        -- If you want the formatexpr, here is the place to set it
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+      end,
+    },
+    { -- Collection of various small independent plugins/modules
+      'echasnovski/mini.surround',
+      config = function()
+        -- Add/delete/replace surroundings (brackets, quotes, etc.)
+        -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+        -- - sd'   - [S]urround [D]elete [']quotes
+        -- - sr)'  - [S]urround [R]eplace [)] [']
+        require('mini.surround').setup()
+      end,
+    },
+    {
+      'echasnovski/mini.ai',
+      config = function()
+        -- Better Around/Inside textobjects
+        -- Examples:
+        --  - va)  - [V]isually select [A]round [)]paren
+        --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+        --  - ci'  - [C]hange [I]nside [']quote
+        require('mini.ai').setup { n_lines = 500 }
+      end,
+    },
+    { -- Highlight todo, notes, etc in comments
+      'folke/todo-comments.nvim',
+      event = 'VimEnter',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      opts = { signs = false }
+    },
+  },
 
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "habamax" } },
-    -- automatically check for plugin updates
-    checker = { enabled = true },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
 })
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

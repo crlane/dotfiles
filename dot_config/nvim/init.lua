@@ -10,13 +10,6 @@ vim.g.maplocalleader = ' '
 -- jj as escape in insert and visual mode
 local options = { nowait = true, noremap = true }
 vim.keymap.set('i', 'jj', '<Esc>', options)
-vim.keymap.set('v', 'jj', '<Esc>', options)
--- vim.keymap.set('s', 'jj', '<Esc>')
--- vim.keymap.set('x', 'jj', '<Esc>')
--- vim.keymap.set('c', 'jj', '<Esc>')
--- vim.keymap.set('o', 'jj', '<Esc>')
--- vim.keymap.set('l', 'jj', '<Esc>')
--- vim.keymap.set('t', 'jj', '<Esc>')
 
 -- <leader>p will paste clipboard into buffer
 -- <leader>c will copy entire buffer into clipboard

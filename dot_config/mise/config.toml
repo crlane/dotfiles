@@ -5,25 +5,21 @@ disable_backends = [ "pipx" ]
 experimental = true
 
 [tools]
-uv = 'latest'
-bun = 'latest'
+chezmoi = 'latest'
 golang = 'latest'
 python = 'latest'
-chezmoi = 'latest'
-zig = 'latest'
-lua-language-server = 'latest'
-shellcheck = 'latest'
+uv = 'latest'
 rust = 'stable'
 node = 'lts'
+bun = 'latest'
+lua-language-server = 'latest'
+zls = "latest"
+zig = 'latest'
+shellcheck = 'latest'
+shfmt = "latest"
+
+# system tools
 "aqua:BurntSushi/ripgrep" = "latest"
 "aqua:ClementTsang/bottom" = "latest"
 "aqua:ajeetdsouza/zoxide" = "latest"
 "aqua:starship/starship" = "latest"
-zls = "latest"
-shfmt = "latest"
-# "npm:prettier" = "latest"
-# "npm:eslint" = "latest"
-# "npm:diff-so-fancy" = "latest"
-# "npm:typescript" = "latest"
-# "npm:typescript-language-server" = "latest"
-# "npm:bash-language-server" = "latest"
