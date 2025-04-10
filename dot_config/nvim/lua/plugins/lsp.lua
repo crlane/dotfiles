@@ -147,7 +147,13 @@ return {
                     }
                 }
             }
-
+            -- eslint
+            lspconfig.eslint.setup({
+                flags = {
+                    allow_incremental_sync = false,
+                    debounce_text_changes = 1000
+                }
+            })
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
@@ -234,3 +240,5 @@ return {
         },
     }
 }
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
