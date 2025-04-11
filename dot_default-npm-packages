@@ -1,7 +1,7 @@
-prettier
 eslint
-yarn
+@eslint/js
 diff-so-fancy
 typescript
+typescript-eslint
 typescript-language-server
 bash-language-server
