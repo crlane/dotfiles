@@ -74,7 +74,6 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 [ -f "$(which mise)" ] && eval "$(mise activate zsh)" || true
 [ -f "$(which starship)" ] && type starship_zle-keymap-select >/dev/null || \
 {
-    echo "Load starship"
     eval "$($(which starship) init zsh)"
 }
 [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
