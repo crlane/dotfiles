@@ -1,5 +1,4 @@
 -- Bootstrap lazy.nvim
-local vim = vim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -7,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out,                            'WarningMsg' },
+      { out, 'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -43,7 +42,7 @@ require('lazy').setup({
     -- nice bar at the bottom
     {
       'itchyny/lightline.vim',
-      lazy = false,       -- also load at start since it's UI
+      lazy = false, -- also load at start since it's UI
       config = function()
         -- no need to also show mode in cmd line when we have bar
         vim.o.showmode = false
@@ -51,7 +50,7 @@ require('lazy').setup({
           colorscheme = 'one',
           active = {
             left = {
-              { 'mode',     'paste' },
+              { 'mode', 'paste' },
               { 'readonly', 'filename', 'modified' },
             },
             right = {
@@ -176,7 +175,7 @@ require('lazy').setup({
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
       end,
     },
-    {     -- Collection of various small independent plugins/modules
+    { -- Collection of various small independent plugins/modules
       'echasnovski/mini.surround',
       config = function()
         -- Add/delete/replace surroundings (brackets, quotes, etc.)
@@ -197,7 +196,7 @@ require('lazy').setup({
         require('mini.ai').setup({ n_lines = 500 })
       end,
     },
-    {     -- Highlight todo, notes, etc in comments
+    { -- Highlight todo, notes, etc in comments
       'folke/todo-comments.nvim',
       event = 'VimEnter',
       dependencies = { 'nvim-lua/plenary.nvim' },

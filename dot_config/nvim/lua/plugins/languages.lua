@@ -1,48 +1,48 @@
 return {
   -- zig
   {
-    "ziglang/zig",
-    ft = { "zig" },
+    'ziglang/zig',
+    ft = { 'zig' },
   },
   -- terraform
   {
-    "hashivim/vim-terraform",
-    ft = { "terraform" },
+    'hashivim/vim-terraform',
+    ft = { 'terraform' },
   },
   -- svelte
   {
-    "evanleck/vim-svelte",
-    ft = { "svelte" },
+    'evanleck/vim-svelte',
+    ft = { 'svelte' },
   },
   -- toml
-  "cespare/vim-toml",
+  'cespare/vim-toml',
   -- jinja
-  "lepture/vim-jinja",
+  'lepture/vim-jinja',
   -- yaml
   {
-    "cuducos/yaml.nvim",
-    ft = { "yaml" },
+    'cuducos/yaml.nvim',
+    ft = { 'yaml' },
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+      'nvim-treesitter/nvim-treesitter',
     },
   },
   -- rust
   {
-    "rust-lang/rust.vim",
-    ft = { "rust" },
+    'rust-lang/rust.vim',
+    ft = { 'rust' },
     config = function()
       vim.g.rustfmt_autosave = 1
       vim.g.rustfmt_emit_files = 1
       vim.g.rustfmt_fail_silently = 0
-      vim.g.rust_clip_command = "wl-copy"
+      vim.g.rust_clip_command = 'wl-copy'
     end,
   },
   -- markdown
   {
-    "plasticboy/vim-markdown",
-    ft = { "markdown" },
+    'plasticboy/vim-markdown',
+    ft = { 'markdown' },
     dependencies = {
-      "godlygeek/tabular",
+      'godlygeek/tabular',
     },
     config = function()
       -- never ever fold!
@@ -57,17 +57,17 @@ return {
     end,
   },
   {
-    "ray-x/go.nvim",
+    'ray-x/go.nvim',
     dependencies = { -- optional packages
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
+      'ray-x/guihua.lua',
+      'neovim/nvim-lspconfig',
+      'nvim-treesitter/nvim-treesitter',
     },
     config = function()
-      require("go").setup()
+      require('go').setup()
     end,
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
+    event = { 'CmdlineEnter' },
+    ft = { 'go', 'gomod' },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 }
