@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out, 'WarningMsg' },
+      { out,                            'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -50,7 +50,7 @@ require('lazy').setup({
           colorscheme = 'one',
           active = {
             left = {
-              { 'mode', 'paste' },
+              { 'mode',     'paste' },
               { 'readonly', 'filename', 'modified' },
             },
             right = {
@@ -175,26 +175,15 @@ require('lazy').setup({
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
       end,
     },
-    { -- Collection of various small independent plugins/modules
-      'echasnovski/mini.surround',
-      config = function()
-        -- Add/delete/replace surroundings (brackets, quotes, etc.)
-        -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-        -- - sd'   - [S]urround [D]elete [']quotes
-        -- - sr)'  - [S]urround [R]eplace [)] [']
-        require('mini.surround').setup()
-      end,
-    },
     {
-      'echasnovski/mini.ai',
+      "kylechui/nvim-surround",
+      version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
       config = function()
-        -- Better Around/Inside textobjects
-        -- Examples:
-        --  - va)  - [V]isually select [A]round [)]paren
-        --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-        --  - ci'  - [C]hange [I]nside [']quote
-        require('mini.ai').setup({ n_lines = 500 })
-      end,
+        require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
+        })
+      end
     },
     { -- Highlight todo, notes, etc in comments
       'folke/todo-comments.nvim',
