@@ -2,8 +2,8 @@ local g = vim.g
 local opt = vim.opt
 -- remap leader to spacebar
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-g.mapleader = " "
-g.maplocalleader = " "
+g.mapleader = ' '
+g.maplocalleader = ' '
 opt.relativenumber = true
 -- and show the absolute line number for the current line
 opt.number = true
@@ -21,7 +21,7 @@ opt.expandtab = true
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-	opt.clipboard = "unnamedplus"
+  opt.clipboard = 'unnamedplus'
 end)
 -- case-insensitive search/replace
 opt.ignorecase = true
@@ -30,18 +30,18 @@ opt.smartcase = true
 -- never ever make my terminal beep
 opt.vb = true
 -- show a column at 80 characters as a guide for long lines
-opt.colorcolumn = "80"
+opt.colorcolumn = '80'
 -- Decrease update time
-opt.updatetime = 250
+opt.updatetime = 500
 -- Decrease mapped sequence wait time
 opt.timeoutlen = 300
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 opt.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
-opt.inccommand = "split"
+opt.inccommand = 'split'
 -- Show which line your cursor is on
 opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
@@ -52,21 +52,21 @@ opt.scrolloff = 5
 opt.confirm = true
 -- never ever folding
 opt.foldenable = false
-opt.foldmethod = "manual"
+opt.foldmethod = 'manual'
 opt.foldlevelstart = 99
 -- never show me line breaks if they're not there
 opt.wrap = false
 opt.linebreak = true
 -- always draw sign column. prevents buffer moving when adding/deleting sign
-opt.signcolumn = "yes"
-opt.background = "dark"
+opt.signcolumn = 'yes'
+opt.background = 'dark'
 --" Decent wildmenu
 -- in completion, when there is more than one match,
 -- list all matches, and only complete to longest common match
-opt.wildmode = "list:longest"
+opt.wildmode = 'list:longest'
 -- when opening a file with a command (like :e),
 -- don't suggest files like there:
-opt.wildignore = ".hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site"
+opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
 -- :h laststatus
 opt.laststatus = 3
 -- The line beneath this is called `modeline`. See `:help modeline`
