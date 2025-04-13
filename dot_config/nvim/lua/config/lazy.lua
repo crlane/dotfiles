@@ -42,7 +42,7 @@ require('lazy').setup({
     -- nice bar at the bottom
     {
       'itchyny/lightline.vim',
-      lazy = false, -- also load at start since it's UI
+      lazy = false,       -- also load at start since it's UI
       config = function()
         -- no need to also show mode in cmd line when we have bar
         vim.o.showmode = false
@@ -152,7 +152,7 @@ require('lazy').setup({
           lua = { 'stylua' },
           python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
           javascript = { 'eslint', 'prettier', stop_after_first = true },
-          typescript = { 'eslint-typescript', stop_after_first = true },
+          typescript = { 'typescript-eslint', stop_after_first = true },
           rust = { 'rustfmt' },
           golang = { 'gofmt' },
         },
@@ -176,16 +176,16 @@ require('lazy').setup({
       end,
     },
     {
-      "kylechui/nvim-surround",
-      version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-      event = "VeryLazy",
+      'kylechui/nvim-surround',
+      version = '^3.0.0',       -- Use for stability; omit to use `main` branch for the latest features
+      event = 'VeryLazy',
       config = function()
-        require("nvim-surround").setup({
+        require('nvim-surround').setup({
           -- Configuration here, or leave empty to use defaults
         })
-      end
+      end,
     },
-    { -- Highlight todo, notes, etc in comments
+    {     -- Highlight todo, notes, etc in comments
       'folke/todo-comments.nvim',
       event = 'VimEnter',
       dependencies = { 'nvim-lua/plenary.nvim' },
