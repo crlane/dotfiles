@@ -31,6 +31,7 @@ return {
     },
     'folke/lazydev.nvim',
     'Kaiser-Yang/blink-cmp-avante',
+    'xzbdmw/colorful-menu.nvim',
   },
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config
@@ -72,28 +73,45 @@ return {
     completion = {
       -- By default, you may press `<c-space>` to show the documentation.
       -- Optionally, set `auto_show = true` to show the documentation after a delay.
-      documentation = { auto_show = true, auto_show_delay_ms = 750 },
-      ghost_text = { enabled = true },
+      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      ghost_text = { enabled = true, show_with_menu = true },
+      menu = {
+        draw = {
+          columns = {
+            { 'source_name', 'kind_icon',            gap = 1 },
+            { 'label',       width = { fill = true } },
+          },
+          components = {
+            source_name = {
+              text = function(ctx)
+                return '[' .. ctx.source_name .. ']'
+              end,
+            },
+            label = {
+              text = function(ctx)
+                return require('colorful-menu').blink_components_text(ctx)
+              end,
+              highlight = function(ctx)
+                return require('colorful-menu').blink_components_highlight(ctx)
+              end,
+            },
+          },
+        },
+      },
     },
 
     sources = {
-      default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+      default = { 'lsp', 'snippets', 'avante', 'path', 'buffer', 'lazydev' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        avante = { module = 'blink-cmp-avante', name = 'Avante', score_offset = 100 },
+        avante = { module = 'blink-cmp-avante', name = 'Avante', score_offset = 84 },
       },
     },
 
     snippets = { preset = 'luasnip' },
 
-    -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-    -- which automatically downloads a prebuilt binary when enabled.
-    --
-    -- By default, we use the Lua implementation instead, but you may enable
-    -- the rust implementation via `'prefer_rust_with_warning'`
-    --
     -- See :h blink-cmp-config-fuzzy for more information
-    fuzzy = { implementation = 'lua' },
+    fuzzy = { implementation = 'prefer_rust' },
 
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },
