@@ -2,5 +2,4 @@ ipdb
 pytest
 pytest-cov
 ruff
-python-lsp-ruff
-python-lsp-server
+basedpyright
