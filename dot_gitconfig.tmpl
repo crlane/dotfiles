@@ -3,7 +3,7 @@
 	email = {{ .email | quote }}
 [core]
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
 {{ if eq .role "work-aws" }}
 [credential]
 	helper = !aws --profile eec codecommit credential-helper $@
@@ -58,7 +58,7 @@
     pu = pull
     puo = pull origin
     puom = pull origin main
-    
+
     f = fetch
 
     # list aliases
@@ -72,5 +72,14 @@
     sort = -committerdate
 [push]
     autoSetupRemote = true
-# [merge]
-#     conflictstyle = zdiff3
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    line-numbers = true
+    side-by-side = true
+    syntax-theme = darcula
+    diff-so-fancy = true
+[merge]
+    conflictstyle = zdiff3

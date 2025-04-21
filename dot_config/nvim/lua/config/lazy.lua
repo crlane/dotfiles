@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out,                            'WarningMsg' },
+      { out, 'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -50,7 +50,7 @@ require('lazy').setup({
           colorscheme = 'one',
           active = {
             left = {
-              { 'mode',     'paste' },
+              { 'mode', 'paste' },
               { 'readonly', 'filename', 'modified' },
             },
             right = {
@@ -181,8 +181,8 @@ require('lazy').setup({
         formatters_by_ft = {
           lua = { 'stylua' },
           python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-          javascript = { 'eslint', 'prettier', stop_after_first = true },
-          typescript = { 'typescript-eslint', stop_after_first = true },
+          javascript = { 'eslint', 'prettier' },
+          typescript = { 'typescript-eslint', 'prettier' },
           rust = { 'rustfmt' },
           golang = { 'gofmt' },
           xml = { 'xmllint' },
@@ -230,7 +230,7 @@ require('lazy').setup({
       },
       opts = {},
     },
-    { 'echasnovski/mini.align',    version = '*' },
+    { 'echasnovski/mini.align', version = '*' },
     { 'tris203/precognition.nvim', opts = {} },
   },
 

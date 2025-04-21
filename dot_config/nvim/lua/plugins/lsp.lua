@@ -12,17 +12,17 @@ return {
         ts_ls = {},
         lua_ls = {},
         rust_analyzer = {},
-        pylsp = {
+        basedpyright = {
           settings = {
-            pylsp = {
-              plugins = {
-                ruff = {},
-              },
+            basedpyright = {
+              disableOrganizeImports = true,
             },
           },
         },
+        ruff = {}, -- use pyproject.toml for per project settings
         bash_lsp = {},
         zls = {},
+        gopls = {},
       }
       for server, settings in pairs(servers) do
         vim.lsp.config(server, settings)
