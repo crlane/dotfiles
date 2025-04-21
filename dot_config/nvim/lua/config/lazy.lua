@@ -112,6 +112,7 @@ require('lazy').setup({
       config = function()
         local actions = require('telescope.actions')
         require('telescope').setup({
+          pickers = { colorscheme = { enable_preview = true } },
           defaults = {
             mappings = {
               i = {
@@ -148,6 +149,8 @@ require('lazy').setup({
             prompt_title = 'Find Files (Everything)',
           })
         end, { desc = '[S]earch [E]verything, including hidden and ignored!' })
+
+        vim.keymap.set('n', '<leader>uc', builtin.colorscheme, { desc = '[U]I colorscheme preview' })
       end,
     },
     {

@@ -128,6 +128,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Disable hover in favor of other?
         client.server_capabilities.hoverProvider = false
       end
+      -- if client.name == 'basedpyright' then
+      --   client.server_capabilities.semanticTokensProvider = nil
+      -- end
       -- Autoformat on save if the LS supports it
       if client:supports_method('textDocument/formatting') then
         local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
