@@ -187,7 +187,7 @@ require('lazy').setup({
           javascript = { 'eslint', 'prettier' },
           typescript = { 'typescript-eslint', 'prettier' },
           rust = { 'rustfmt' },
-          golang = { 'gofmt' },
+          go = { 'gofmt' },
           xml = { 'xmllint' },
         },
         -- Set default options
