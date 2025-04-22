@@ -38,6 +38,7 @@ alias g=git
 alias gs="g status"
 # COMPLETIONS
 
+fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit && compinit
 
 # EXPORTS
@@ -76,7 +77,3 @@ bindkey '^r' history-incremental-search-backward
     eval "$($(which starship) init zsh)"
 }
 [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
-
-# additional completions
-eval "$(uv generate-shell-completion zsh)"
-eval "$(moi completion zsh)"
