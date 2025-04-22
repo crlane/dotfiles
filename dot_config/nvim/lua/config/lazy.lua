@@ -241,7 +241,17 @@ require('lazy').setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { 'habamax' } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = {
+    -- automatically check for plugin updates
+    enabled = false,
+    notify = false, -- get a notification when new updates are found
+    frequency = 24 * 3600, -- check for updates every 24 hours at most
+  },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = true, -- get a notification when changes are found
+  },
 })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

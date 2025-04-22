@@ -30,5 +30,6 @@ map('n', '<C-k>', '<C-w><C-k>', { silent = true, noremap = true, desc = 'Move fo
 -- after jumping to a file, jump back then previous position
 -- :h jumpmotion
 map('n', 'gb', '<C-o>', { silent = true, noremap = true, desc = '[G]oto [B]ack in jump buffer' })
+map('n', '<leader>lu', '<cmd>Lazy update<cr>', { noremap = true, desc = '[L]azy [U]pdate' })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
