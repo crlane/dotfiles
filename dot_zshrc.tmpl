@@ -48,10 +48,11 @@ export GPG_TTY=$(tty)
 # PATHS
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:$PATH
-PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 {{- end -}}
-{{ if eq .role "work-aws" }}
-export PATH=$HOME/.toolbox/bin:$PATH
+{{ if eq .role "work-aws" "work-c1" }}
+[ -f .{{ .role }}.zshrc ] && source .{{ .role }}.zshrc
 {{- end }}
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
