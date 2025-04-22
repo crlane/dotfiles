@@ -51,9 +51,6 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 {{- end -}}
-{{ if eq .role "work-aws" "work-c1" }}
-[ -f .{{ .role }}.zshrc ] && source .{{ .role }}.zshrc
-{{- end }}
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # use vim keybindings
@@ -68,8 +65,9 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
 # shell customization
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+{{ if eq .role "work-aws" "work-c1" }}
+[ -f "$HOME/.{{ .role }}.zshrc" ] && source "$HOME/.{{ .role }}.zshrc"
+{{- end }}
 
 # Hook tools into your shell.
 [ -f "$(which mise)" ] && eval "$(mise activate zsh)" || true
