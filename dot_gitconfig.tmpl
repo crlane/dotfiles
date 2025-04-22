@@ -4,13 +4,6 @@
 [core]
 	excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
     pager = delta
-{{ if eq .role "work-aws" }}
-[credential]
-	helper = !aws --profile eec codecommit credential-helper $@
-	# helper = !aws --profile dev codecommit credential-helper $@
-	# helper = !aws --profile eec-gc --region us-gov-west-1 codecommit credential-helper $@
-    useHttpPath = true
-{{- end -}}
 [pull]
 	rebase = true
 [color]
@@ -83,3 +76,7 @@
     diff-so-fancy = true
 [merge]
     conflictstyle = zdiff3
+{{ if eq .role "work-aws" "work-c1" }}
+[include]
+    path = .{{ .role }}.gitconfig
+{{- end -}}
