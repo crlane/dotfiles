@@ -20,7 +20,7 @@ return {
           },
         },
         ruff = {}, -- use pyproject.toml for per project settings
-        bash_lsp = {},
+        bashls = {},
         zls = {},
         gopls = {},
       }
@@ -30,6 +30,16 @@ return {
       end
     end,
   },
+  vim.diagnostic.config({
+    -- Use the default configuration
+    -- virtual_lines = true,
+
+    -- Alternatively, customize specific options
+    virtual_lines = {
+      -- Only show virtual line diagnostics for the current cursor line
+      current_line = true,
+    },
+  }),
 }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
