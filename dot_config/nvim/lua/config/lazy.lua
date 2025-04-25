@@ -94,10 +94,10 @@ require('lazy').setup({
       'notjedi/nvim-rooter.lua',
       config = function()
         require('nvim-rooter').setup({
-          rooter_patterns = { '.git', '.hg', '.svn' },
+          rooter_patterns = { '.git', '.obsidian' },
           trigger_patterns = { '*' },
           manual = false,
-          fallback_to_parent = true,
+          fallback_to_parent = false,
           cd_scope = 'smart',
         })
       end,
