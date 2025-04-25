@@ -69,5 +69,8 @@ opt.wildmode = 'list:longest'
 opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
 -- :h laststatus
 opt.laststatus = 3
+
+-- this is used for obsidian-nvim
+opt.conceallevel = 1
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

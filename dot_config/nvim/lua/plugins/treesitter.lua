@@ -10,7 +10,6 @@ return {
             ensure_installed = {
                 'go',
                 'lua',
-                'markdown',
                 'python',
                 'rust',
                 'zig',
@@ -18,6 +17,7 @@ return {
                 'bash',
                 -- config langs
                 'json',
+                'json5',
                 'yaml',
                 'toml',
                 'ini',
