@@ -5,7 +5,7 @@ local getWorkspaces = function()
   }
 
   local existingPaths = {}
-  local i = 0
+  local i = 1
   for wsName, wsPath in pairs(paths) do
     if vim.uv.fs_stat(wsPath) then
       existingPaths[i] = { name = wsName, path = wsPath }
@@ -16,11 +16,8 @@ local getWorkspaces = function()
   return existingPaths
 end
 
-local activeWorkspaces = getWorkspaces()
-
 return {
   'obsidian-nvim/obsidian.nvim',
-  cond = vim.fn.getcwd() == activeWorkspaces[0].path,
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = 'markdown',
@@ -29,11 +26,11 @@ return {
     'nvim-lua/plenary.nvim',
   },
   opts = {
-    workspaces = activeWorkspaces,
     completion = {
       nvim_cmp = false,
       blink = true,
     },
+    workspaces = getWorkspaces(),
     daily_notes = {
       folder = 'dailies',
       -- https://lua.org/pil/22.1.html
@@ -56,7 +53,7 @@ return {
     },
     ui = { enable = false },
   },
-  config = function(opts)
+  config = function(_, opts)
     require('obsidian').setup(opts)
     vim.keymap.set(
       { 'n', 'v' },
@@ -75,7 +72,7 @@ return {
       { 'n', 'v' },
       '<leader>ont',
       '<cmd>ObsidianNewFromTemplate<cr>',
-      { noremap = true, desc = '[S]earch [O]bsidian' }
+      { noremap = true, desc = '[O]bsidian [N]ew From [T]emplate', buffer = true }
     )
     vim.keymap.set(
       { 'v' },
