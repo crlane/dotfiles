@@ -42,7 +42,7 @@ return {
       -- Optional, default tags to add to each new daily note created.
       default_tags = { 'daily' },
       -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-      -- template = 'crlane-daily',
+      template = 'daily',
     },
     preferred_link_style = 'markdown',
     disable_frontmatter = false,
@@ -52,7 +52,6 @@ return {
       date_format = '%Y-%m-%d',
       time_format = '%H:%M',
       -- A map for custom variables, the key should be the variable and the value a function
-      substitutions = {},
     },
     ui = { enable = false },
   },
@@ -110,11 +109,10 @@ return {
       '<cmd>ObsidianWorkspace<cr>',
       { noremap = true, desc = '[O]bsidian [W]orkspace' }
     )
-    vim.keymap.set(
-      { 'n' },
-      '<leader>ok',
-      '<cmd>ObsidianToggleCheckbox<cr>',
-      { noremap = true, desc = '[O]bsidian Chec[k]box' }
-    )
+    vim.keymap.set({ 'n' }, '<leader>ok', function()
+      require('obsidian').util.toggle_checkbox({ ' ', 'x' })
+    end, { noremap = true, desc = '[O]bsidian Chec[k]box' })
   end,
 }
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
