@@ -233,7 +233,13 @@ require('lazy').setup({
       },
       opts = {},
     },
-    { 'echasnovski/mini.align', version = '*' },
+    {
+      'echasnovski/mini.align',
+      version = '*',
+      config = function()
+        require('mini.align').setup({})
+      end,
+    },
     { 'tris203/precognition.nvim', opts = {} },
   },
 
