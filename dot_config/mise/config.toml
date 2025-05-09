@@ -1,6 +1,7 @@
 [settings]
 python.uv_venv_auto = true
 python.default_packages_file = "~/.default-python-packages"
+idiomatic_version_file_enable_tools = ['python']
 disable_backends = [ "pipx" ]
 experimental = true
 
