@@ -13,7 +13,16 @@ return {
         timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
         temperature = 0,
         max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+        api_key_name = 'cmd:op item get "OpenAI API Credentials" --fields=credential --reveal',
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+      },
+      gemini = {
+        endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
+        model = 'gemini-2.0-flash',
+        timeout = 30000, -- Timeout in milliseconds
+        temperature = 0,
+        max_tokens = 8192,
+        api_key_name = 'cmd:op item get "Google Gemini API Credentials" --fields=credential --reveal',
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

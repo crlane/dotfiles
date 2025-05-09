@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out, 'WarningMsg' },
+      { out,                            'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -50,7 +50,7 @@ require('lazy').setup({
           colorscheme = 'one',
           active = {
             left = {
-              { 'mode', 'paste' },
+              { 'mode',     'paste' },
               { 'readonly', 'filename', 'modified' },
             },
             right = {
@@ -250,7 +250,7 @@ require('lazy').setup({
   checker = {
     -- automatically check for plugin updates
     enabled = false,
-    notify = false, -- get a notification when new updates are found
+    notify = false,        -- get a notification when new updates are found
     frequency = 24 * 3600, -- check for updates every 24 hours at most
   },
   change_detection = {
