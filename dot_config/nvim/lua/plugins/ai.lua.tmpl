@@ -6,6 +6,9 @@ return {
     opts = {
       -- add any opts here
       -- for example
+      {{ if eq .role "work-aws" "work-c1" }}
+      provider = 'copilot',
+      {{ else }}
       provider = 'openai',
       openai = {
         endpoint = 'https://api.openai.com/v1',
@@ -13,7 +16,7 @@ return {
         timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
         temperature = 0,
         max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        api_key_name = 'cmd:op item get "OpenAI API Credentials" --fields=credential --reveal',
+        api_key_name = { 'op', 'item', 'get', 'OpenAI API Credentials', '--fields', 'label=credential', '--reveal' },
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
       gemini = {
@@ -22,8 +25,17 @@ return {
         timeout = 30000, -- Timeout in milliseconds
         temperature = 0,
         max_tokens = 8192,
-        api_key_name = 'cmd:op item get "Google Gemini API Credentials" --fields=credential --reveal',
+        api_key_name = {
+          'op',
+          'item',
+          'get',
+          'Google Gemini API Credentials',
+          '--fields',
+          'label=credential',
+          '--reveal',
+        },
       },
+      {{- end }}
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = 'make',
