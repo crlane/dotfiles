@@ -1,62 +1,7 @@
 " Cameron Lane's .vimrc customization file
-" Last change: 2023-05-28
+" Last change: 2025-05-16T08:29:52
 """""""""""""""""""""""""""""""  Plugins  """""""""""""""""""""""""""""""""""""""""""
-" Load vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-    " Language specific things
-    Plug 'cespare/vim-toml'
-    Plug 'ekalinin/Dockerfile.vim'
-    Plug 'lepture/vim-jinja'
-    Plug 'dbakker/vim-lint' " lints vimrc
-    " Plug 'fatih/vim-go', {'tag': '*' , 'do': ':GoInstallBinaries'}
-    Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'pangloss/vim-javascript'
-    Plug 'Quramy/tsuquyomi', {'for': 'typescript'}
-    Plug 'rust-lang/rust.vim', {'for': 'rust'}
-    Plug 'Rykka/riv.vim', {'for': 'rst'}
-
-    " Linting and Static Analysis
-    Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'dense-analysis/ale'
-
-    " Language servers
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Plug 'prabirshrestha/vim-lsp' | Plug 'mattn/vim-lsp-settings' | Plug 'prabirshrestha/async.vim'
-    " Plug 'prabirshrestha/asyncomplete.vim' | Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    " Plug 'thomasfaingnaert/vim-lsp-snippets'| Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-
-    " Git tools
-    Plug 'airblade/vim-gitgutter'
-    Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim' " dependencies are expressed like this
-    Plug 'tpope/vim-fugitive'
-
-    " Search
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-
-    " Motion, Snippets, and Completion
-    Plug 'justinmk/vim-sneak'
-    Plug 'neoclide/coc-snippets'
-    Plug 'tomtom/tcomment_vim'
-    Plug 'honza/vim-snippets'
-
-    " Appearance
-    Plug 'edkolev/tmuxline.vim'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle'}
-
-call plug#end()
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 """""""""""""""""""""""""""" Key Remappings  """""""""""""""""""""""""""""""""""
 
 " Remap spacebar to be the leader
@@ -76,44 +21,13 @@ nnoremap <silent> <C-l> :wincmd l<cr>
 " Clear screen highlighting
 map <silent> <leader><leader> :noh<cr>
 
-" Diff put/get for fugitive
-nmap <leader>u :diffput<cr>
-nmap <leader>g :diffget<cr>
-
-" copy to system clipboard
-xnoremap <leader>y "*y
-
-" cut to system clipboard
-xnoremap <leader>d "*d
-
-" paste from system clipboard
-nmap <leader>p <F7>"+p<F7>
-noremap <leader>P <F7>"+P<F7>
-
-" fix python tracebacks
-nnoremap <leader>tb :%s/#012/\r/ge<cr>
-
 " fix trailing whitespace
 nnoremap <leader>ws :%s/\s\+$//e<cr>
-
-" shortcuts
-" noremap <F5> :! pdflatex %<cr>
-" noremap <F6> :! /usr/bin/perl %<cr>
-" noremap <F7> :! python %<cr>
-" noremap <F8> :! make<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """"""""""""""""""""""""""" General Editor Settings """"""""""""""""""""""""""""
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
-" useful for when you're working on your vimrc or using the -u option to load
-" alternate vimrc
-set nocompatible
-
-set re=0                                " use a newer regular expression engine: https://jameschambers.co.uk/vim-typescript-slow
 set encoding=utf-8                      " always work with unicode files
 set fileencoding=utf-8                  " always work with unicode files
 set backspace=indent,eol,start          " allow backspacing over everything in insert mode
@@ -138,16 +52,6 @@ if has('persistent_undo')
     set undofile
 endif
 
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
-
-" coc.nvim settings
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
 set updatetime=300
@@ -157,46 +61,7 @@ set updatetime=300
 set signcolumn=yes" Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
 set signcolumn=yes
-
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s)
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""" Appearance, Colors, & Fonts """""""""""""""""""""""""
 syntax enable                           " If using a dark background within the editing area and syntax highlighting
@@ -213,7 +78,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""" FileType specific settings """"""""""""""""""""""""
 " Python, visual line length suggestion
 au FileType python set colorcolumn=80   " add an 80 char bg highlight
 
@@ -233,101 +97,9 @@ autocmd BufNewFile,BufRead *.pyx setlocal ft=python
 autocmd FileType go setlocal noexpandtab
 autocmd FileType go setlocal tabstop=4
 
-" svelte
-au! BufNewFile,BufRead *.svelte set ft=html
-
-" Go vim specific bindings
-au FileType go nmap <leader>gr <Plug>(go-run)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap <leader>gc <Plug>(go-coverage)
-au FileType go nmap <leader>gd <Plug>(go-doc)
-au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
-
-" Rust vim specific bindings
-au FileType rust nmap <leader>rr <Plug>(rust-run)
-au FileType rust nmap <leader>rb <Plug>(rust-build)
-au FileType rust nmap <leader>rt :RustTest<cr>
-au FileType rust nmap <leader>rc <Plug>(rust-coverage)
-au FileType rust nmap <leader>rd <Plug>(rust-doc)
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""" Plugin specific values """"""""""""""""""""""""""""
 
-" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_detect_iminsert = 1
-let g:airline_powerline_fonts = 1
-let g:airline_section_z = '%3l/%L:%2c'
-" let g:airline#extensions#tmuxline#enabled = 0
-
-" tmuxline
-" let g:tmuxline_powerline_separators = 0
-
-" vim-gist
-let g:gist_post_private = 1
-let g:gist_show_privates = 1
-" let g:gist_api_url = 'https://github.atl.pdrop.net/api/v3'
-let g:gist_use_password_in_gitconfig = 0
-
-if executable('pbcopy')
-    let g:gist_clip_command = 'pbcopy'
-endif
-
-if executable('xclip')
-    let g:gist_clip_command = 'xclip'
-endif
-
-let g:gist_curl_options= '-Lv'
-
-" highlight trailing whitespace in any filetype
-hi ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-" format with goimports instead of gofmt
-" let g:go_fmt_command = substitute(expand(system('which goimports')), '\n', '', '')
-
-" ALE https://github.com/w0rp/ale
-let g:ale_python_flake8_executable = substitute(expand(system('which pylint')), '\n', '', '')
-let g:ale_nodejs_eslint_executable = substitute(expand(system('which eslint')), '\n', '', '')
-let g:ale_completion_enabled = 0
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint', 'prettier'],
-\}
-let g:ale_fix_on_save = 1
-
-" nmap <silent> <C-p> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-n> <Plug>(ale_next_wrap)
-
-":help :RustFmt
-let g:rustc_command = substitute(expand(system('asdf which rustc')), '\n', '', '')
-let g:rust_clip_command = 'xclip -selection clipboard'
-let g:rustfmt_command = substitute(expand(system('asdf which rustfmt')), '\n', '', '')
-let g:rustfmt_autosave = 1
-let g:rustfmt_emit = 1
-let g:rustfmt_fail_silently = 0
-
-" fzf.vim
-nnoremap <C-p> :Files<cr>
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--disabled', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  let spec = fzf#vim#with_preview(spec, 'right', 'ctrl-/')
-  call fzf#vim#grep(initial_command, 1, spec, a:fullscreen)
-endfunction
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-let g:fzf_colors =
-  \{ 'preview-bg': ['bg', 'Folded', 'FoldColumn', 'Normal'],
-  \'preview-fg': ['fg', 'Normal'],
-  \'bg': ['bg', 'FoldColumn', 'Normal']}
-
-
-" use <c-space> for trigger completion
-inoremap <silent><expr> <C-space> coc#refresh()
-hi link CocFloating Normal
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
