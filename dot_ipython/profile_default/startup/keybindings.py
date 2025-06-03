@@ -16,3 +16,4 @@ if getattr(ip, "pt_app", None):
     registry = ip.pt_app.key_bindings
     registry.add_binding("j", "j", filter=(HasFocus(DEFAULT_BUFFER) & ViInsertMode()))(
         switch_to_navigation_mode
+    )
