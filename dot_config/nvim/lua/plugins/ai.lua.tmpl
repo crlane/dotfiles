@@ -10,31 +10,38 @@ return {
       provider = 'copilot',
       {{ else }}
       provider = 'openai',
-      openai = {
-        endpoint = 'https://api.openai.com/v1',
-        model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-        temperature = 0,
-        max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        api_key_name = { 'op', 'item', 'get', 'OpenAI API Credentials', '--fields', 'label=credential', '--reveal' },
-        --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-      },
-      gemini = {
-        endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
-        model = 'gemini-2.0-flash',
-        timeout = 30000, -- Timeout in milliseconds
-        temperature = 0,
-        max_tokens = 8192,
-        api_key_name = {
-          'op',
-          'item',
-          'get',
-          'Google Gemini API Credentials',
-          '--fields',
-          'label=credential',
-          '--reveal',
+      providers = {
+        openai = {
+          endpoint = 'https://api.openai.com/v1',
+          model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
+          timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+
+          api_key_name = { 'op', 'item', 'get', '3wesgagftcayrrohbbrqitaymi', '--fields', 'label=credential', '--reveal' },
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+            reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          }
         },
-      },
+        gemini = {
+          endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
+          model = 'gemini-2.0-flash',
+          timeout = 30000, -- Timeout in milliseconds
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 8192,
+          },
+          api_key_name = {
+            'op',
+            'item',
+            'get',
+            'rrqt5xbe3a743brprbyjo3qhs4',
+            '--fields',
+            'label=credential',
+            '--reveal',
+          },
+        },
+      }
       {{- end }}
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
