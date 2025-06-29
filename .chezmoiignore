@@ -4,5 +4,5 @@ README.md
 {{- end }}
 
 {{ if ne .chezmoi.os "darwin" }}
-~/.config/nvim/lua/plugins/obsidian.lua
+obsidian.lua
 {{- end }}

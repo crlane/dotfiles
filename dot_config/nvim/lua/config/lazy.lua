@@ -87,18 +87,18 @@ require('lazy').setup({
       end,
     },
     -- auto-cd to root of git project
-    {
-      'notjedi/nvim-rooter.lua',
-      config = function()
-        require('nvim-rooter').setup({
-          rooter_patterns = { '.git', '.obsidian' },
-          trigger_patterns = { '*' },
-          manual = false,
-          fallback_to_parent = false,
-          cd_scope = 'smart',
-        })
-      end,
-    },
+    -- {
+    --   'notjedi/nvim-rooter.lua',
+    --   config = function()
+    --     require('nvim-rooter').setup({
+    --       rooter_patterns = { '.git', '.obsidian', 'pyproject.toml', 'Cargo.toml', 'package.json', 'go.mod' },
+    --       trigger_patterns = { '*' },
+    --       manual = false,
+    --       fallback_to_parent = false,
+    --       cd_scope = 'smart',
+    --     })
+    --   end,
+    -- },
     {
       'nvim-telescope/telescope.nvim',
       event = 'VimEnter',

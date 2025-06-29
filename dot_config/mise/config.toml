@@ -1,23 +1,27 @@
 [settings]
 python.uv_venv_auto = true
 python.default_packages_file = "~/.default-python-packages"
-idiomatic_version_file_enable_tools = ['python', 'node']
+idiomatic_version_file_enable_tools = ["python", "node"]
 disable_backends = [ "pipx" ]
 experimental = true
 
 [tools]
-chezmoi = 'latest'
-golang = 'latest'
-python = 'latest'
-uv = 'latest'
-rust = 'stable'
-node = 'lts'
-bun = 'latest'
-lua-language-server = 'latest'
+chezmoi = "latest"
+golang = "latest"
+python = "latest"
+uv = "latest"
+rust = "stable"
+node = "lts"
+bun = "latest"
+lua-language-server = "latest"
 zls = "latest"
-zig = 'latest'
-shellcheck = 'latest'
+zig = "latest"
+shellcheck = "latest"
 shfmt = "latest"
+usage = "latest"
+jq = "latest"
+qsv = "latest"
+gh = "latest"
 
 # system tools
 "aqua:BurntSushi/ripgrep" = "latest"
@@ -29,8 +33,4 @@ shfmt = "latest"
 "aqua:sharkdp/fd" = "latest"
 "aqua:sharkdp/bat" = "latest"
 "aqua:ducaale/xh" = "latest"
-"aqua:yamafaktory/jql" = "latest"
 "aqua:tree-sitter/tree-sitter" = "latest"
-usage = "latest"
-qsv = "latest"
-gh = "latest"

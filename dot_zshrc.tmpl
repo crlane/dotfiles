@@ -77,4 +77,7 @@ bindkey '^r' history-incremental-search-backward
     eval "$($(which starship) init zsh)"
 }
 [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
+
+# signin with one password
+[ -f "$(which op)" ] && eval "$(op signin)" || true
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
