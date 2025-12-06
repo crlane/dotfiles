@@ -6,7 +6,7 @@ return {
     -- Snippet Engine
     {
       'L3MON4D3/LuaSnip',
-      version = '2.x',
+      version = 'v2.*',
       build = (function()
         -- Build Step is needed for regex support in snippets.
         -- This step is not supported in many windows environments.
@@ -78,8 +78,8 @@ return {
       menu = {
         draw = {
           columns = {
-            { 'source_name', 'kind_icon',            gap = 1 },
-            { 'label',       width = { fill = true } },
+            { 'source_name', 'kind_icon', gap = 1 },
+            { 'label', width = { fill = true } },
           },
           components = {
             source_name = {
