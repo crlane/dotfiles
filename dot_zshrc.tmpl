@@ -66,7 +66,7 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
 # shell customization
-{{ if eq .role "work-aws" "work-c1" }}
+{{ if eq .role "work" }}
 [ -f "$HOME/.{{ .role }}.zshrc" ] && source "$HOME/.{{ .role }}.zshrc"
 {{- end }}
 
@@ -76,8 +76,8 @@ bindkey '^r' history-incremental-search-backward
 {
     eval "$($(which starship) init zsh)"
 }
-[ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
+[[ $- == *i* ]] && [ -f "$(which zoxide)" ] && eval "$(zoxide init --cmd cd zsh)" || true
 
 # signin with one password
-[ -f "$(which op)" ] && eval "$(op signin)" || true
+# [ -f "$(which op)" ] && eval "$(op signin)" || true
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"

@@ -2,9 +2,15 @@ return {
     {
         'Rawnly/gist.nvim',
         cmd = { 'GistCreate', 'GistCreateFromFile', 'GistsList' },
+        lazy = true,
         config = function()
             require('gist').setup({
-                gh_cmd = 'op plugin run -- gh',
+                platforms = {
+                    github = {
+                        private = true,
+                        cmd = 'op plugin run -- gh',
+                    },
+                },
             })
         end,
     },

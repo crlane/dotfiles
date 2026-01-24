@@ -1,4 +1,5 @@
 return {
+
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -6,10 +7,10 @@ return {
     opts = {
       -- add any opts here
       -- for example
-      {{ if eq .role "work-aws" "work-c1" }}
+      {{ if eq .role "work" }}
       provider = "copilot",
       {{ else }}
-      provider = "openai",
+      provider = "claude",
       providers = {
         openai = {
           endpoint = "https://api.openai.com/v1",
@@ -43,23 +44,15 @@ return {
         },
         claude = {
             endpoint = "https://api.anthropic.com",
+            auth_type = "max",
             model = "claude-sonnet-4-20250514",
             timeout = 30000, -- Timeout in milliseconds
             extra_request_body = {
               temperature = 0,
               max_tokens = 20480,
             },
-            api_key_name = {
-              "op",
-              "item",
-              "get",
-              "c3z6lcvhsipwrm7w743ds6t56a",
-              "--fields",
-              "label=credential",
-              "--reveal",
-            },
         }
-      },
+      }
       {{- end }}
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
