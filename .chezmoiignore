@@ -1,8 +1,10 @@
 README.md
 {{ if eq .chezmoi.os "darwin" }}
-~/.config/sway/config
+~/.config/sway
+~/.config/backup
 {{- end }}
 
-{{ if ne .chezmoi.os "darwin" }}
-obsidian.lua
-{{- end }}
+**/*secrets.env
+**/*.secrets
+**/op-token.env
+*secrets*
