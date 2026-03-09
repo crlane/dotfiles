@@ -1,0 +1,78 @@
+[save]
+autosave = "after_delay"
+autosave_delay = 1000
+format_on_save = false
+
+[server]
+follow_symlink = false
+browser = "default"
+
+[experimental]
+external_agents = true
+
+[formatting]
+line_length = 79
+
+[display]
+cell_output = "below"
+theme = "system"
+code_editor_font_size = 14
+reference_highlighting = true
+default_table_page_size = 10
+default_table_max_columns = 50
+default_width = "medium"
+dataframes = "rich"
+
+[runtime]
+watcher_on_save = "lazy"
+std_stream_max_bytes = 1000000
+auto_instantiate = false
+reactive_tests = true
+on_cell_change = "autorun"
+output_max_bytes = 8000000
+auto_reload = "autorun"
+default_sql_output = "auto"
+default_csv_encoding = "utf-8"
+
+[mcp]
+presets = ["marimo", "context7"]
+
+[mcp.mcpServers]
+
+[language_servers.ty]
+enabled = true
+
+[language_servers.pylsp]
+enabled = false
+enable_ruff = true
+enable_flake8 = false
+enable_pyflakes = false
+enable_pydocstyle = false
+enable_pylint = false
+enable_mypy = true
+
+[ai.custom_providers]
+
+[ai.models]
+custom_models = []
+displayed_models = []
+
+[package_management]
+manager = "uv"
+
+[keymap]
+preset = "default"
+
+[keymap.overrides]
+
+[diagnostics]
+sql_linter = true
+
+[completion]
+signature_hint_on_typing = false
+copilot = false
+activate_on_typing = true
+
+[snippets]
+custom_paths = []
+include_default_snippets = true
