@@ -2,7 +2,9 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
+        branch = 'master',
         opts = {
+
             highlight = {
                 enable = true,
                 disable = { 'python', 'go', 'lua' },
@@ -24,8 +26,8 @@ return {
                 'csv',
                 'tsv',
                 -- doc langs
-                'latex',
-                'bibtex',
+                -- 'latex',
+                -- 'bibtex',
                 'rst',
                 'markdown',
                 'markdown_inline',
