@@ -1,9 +1,4 @@
 return {
-  -- zig
-  {
-    'ziglang/zig',
-    ft = { 'zig' },
-  },
   -- terraform
   {
     'hashivim/vim-terraform',

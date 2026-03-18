@@ -19,6 +19,7 @@ return {
             },
           },
         },
+        ty = {},
         ruff = {}, -- use pyproject.toml for per project settings
         bashls = {},
         zls = {},
