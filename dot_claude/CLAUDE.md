@@ -25,20 +25,11 @@ This file provides guidance to Claude Code (claude.ai/code).
 
 ## Code Style
 - **Naming**: Variable and function names should generally be complete words.
-- **Comments**: Prefer self-documenting code over excessive comments. Only comment when something is surprising, unclear, or not following typical patterns. Use complete sentences and end them with a period. Provide links where appropriate.
+- **Comments**: Prefer self-documenting code over excessive comments. Only comment when something is surprising, unclear, or not following typical patterns.
 
 ## Code Quality
 
-### Testing And Validation
-- Run existing tests after changes; fix anything you break
-- Add tests for new functionality when a test framework is present
-- Verify type checking and linting pass if configured in the project
-- For API changes, verify request/response contracts
-
-## Language Specific Preferences
-
-### Python Preferences
-- **Dependency Management**: Always use `uv` to manage dependencies
-- **Type Hinting**: Always use type hints when writing or refactoring code
-- **Type Checking**: Always Use `ty` strict rules
-- **Formatting** Always use `ruff` formatting
+- **Testing**: Add tests for new functionality
+- **Validation**: Run existing tests after changes; fix anything you break
+- **Types**: Use type hints or explicit types
+- **Bug Fixes**: Always address root cause, not symptoms
