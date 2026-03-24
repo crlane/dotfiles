@@ -30,7 +30,6 @@ return {
       opts = {},
     },
     'folke/lazydev.nvim',
-    'Kaiser-Yang/blink-cmp-avante',
     'xzbdmw/colorful-menu.nvim',
   },
   --- @module 'blink.cmp'
@@ -101,10 +100,9 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'snippets', 'avante', 'path', 'buffer', 'lazydev' },
+      default = { 'lsp', 'snippets', 'path', 'buffer', 'lazydev' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        avante = { module = 'blink-cmp-avante', name = 'Avante', score_offset = 84 },
       },
     },
 
