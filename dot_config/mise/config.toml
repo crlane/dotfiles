@@ -20,6 +20,11 @@ usage = "latest"
 jq = "latest"
 qsv = "latest"
 gh = "latest"
+rclone = "latest"
+1password = "latest"
+task = "latest"
+neovim = "latest"
+restic = "latest"
 
 # system tools
 "aqua:BurntSushi/ripgrep" = "latest"
@@ -33,9 +38,7 @@ gh = "latest"
 "aqua:ducaale/xh" = "latest"
 "aqua:tree-sitter/tree-sitter" = "latest"
 "cargo:xan" = "latest"
-rclone = "latest"
 "aqua:aws/aws-cli" = "latest"
-1password = "latest"
 claude = { version = "latest", bin = "claude", platforms = """
 [linux-arm64]
 url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/linux-arm64/claude"
@@ -49,5 +52,3 @@ url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d
 [macos-x64]
 url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/darwin-x64/claude"
 """, version_list_url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/stable" }
-task = "latest"
-neovim = "latest"
