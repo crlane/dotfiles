@@ -128,21 +128,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Disable hover in favor of other?
         client.server_capabilities.hoverProvider = false
       end
-      -- if client.name == 'basedpyright' then
-      --   client.server_capabilities.semanticTokensProvider = nil
-      -- end
-      -- Autoformat on save if the LS supports it
-      if client:supports_method('textDocument/formatting') then
-        local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf })
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          group = augroup,
-          buffer = ev.buf,
-          callback = function()
-            vim.lsp.buf.format()
-          end,
-        })
-      end
       -- The following two autocommands are used to highlight references of the
       -- word under your cursor when your cursor rests there for a little while.
       --    See `:help CursorHold` for information about when this is executed
