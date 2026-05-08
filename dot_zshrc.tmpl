@@ -17,13 +17,10 @@ zshaddhistory() {
 }
 
 # Aliases
-alias zshrc="vi ~/.zshrc"
-alias vi=nvim
+alias zshrc="vim ~/.zshrc"
 alias vim=nvim
 alias moi=chezmoi
-alias wa="watch -d"
 {{ if eq .chezmoi.os "darwin" }}
-# use the homebrew tools version of sed
 alias pbp=pbpaste
 alias pbc=pbcopy
 {{- end }}
@@ -36,6 +33,7 @@ alias zb="zig build"
 alias zbt="zig build test"
 alias g=git
 alias gs="g status"
+alias t=task
 # COMPLETIONS
 
 fpath=(~/.config/zsh/completions $fpath)
