@@ -33,3 +33,6 @@ This file provides guidance to Claude Code (claude.ai/code).
 - **Validation**: Run existing tests after changes; fix anything you break
 - **Types**: Use type hints or explicit types
 - **Bug Fixes**: Always address root cause, not symptoms
+
+## Worktrees
+- **Default worktree directory**: `.worktrees/` (project-local, hidden). Add to `.gitignore` and commit if not already ignored before creating a worktree.

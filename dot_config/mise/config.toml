@@ -6,10 +6,10 @@ disable_backends = [ "pipx" ]
 experimental = true
 
 [tools]
-chezmoi = "latest"
+chezmoi = {version="latest", postinstall="chezmoi completion zsh --output ~/.config/zsh/completions/_chezmoi"}
 golang = "latest"
 python = "latest"
-uv = "latest"
+uv = {version="latest", postinstall="uv generate-shell-completion zsh > ~/.config/zsh/completions/_uv"}
 rust = "stable"
 node = "lts"
 bun = "latest"
@@ -22,12 +22,12 @@ qsv = "latest"
 gh = "latest"
 rclone = "latest"
 1password = "latest"
-task = "latest"
-neovim = "latest"
+task = {version="latest", postinstall="task --completion > ~/.config/zsh/completions/_task"}
+neovim = "0.11.6"
 restic = "latest"
 
 # system tools
-"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:BurntSushi/ripgrep" = {version="latest", postinstall="rg complete-zsh > ~/.config/zsh/completions/_rg"}
 "aqua:ClementTsang/bottom" = "latest"
 "aqua:ajeetdsouza/zoxide" = "latest"
 "aqua:starship/starship" = "latest"
@@ -35,9 +35,9 @@ restic = "latest"
 "aqua:dandavison/delta" = "latest"
 "aqua:sharkdp/fd" = "latest"
 "aqua:sharkdp/bat" = "latest"
-"aqua:ducaale/xh" = "latest"
+"aqua:ducaale/xh" = {version="latest", postinstall="xh --generate zsh > ~/.config/zsh/completions/_xh"}
 "aqua:tree-sitter/tree-sitter" = "latest"
-"cargo:xan" = "latest"
+"cargo:xan" = {version="latest", postinstall="xan completions zsh > ~/.config/zsh/completions/_xan"}
 "aqua:aws/aws-cli" = "latest"
 claude = { version = "latest", bin = "claude", platforms = """
 [linux-arm64]
@@ -52,3 +52,6 @@ url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d
 [macos-x64]
 url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/darwin-x64/claude"
 """, version_list_url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/stable" }
+"github:anomalyco/opencode" = "latest"
+"aqua:peteretelej/tree" = "latest"
+codex = "latest"

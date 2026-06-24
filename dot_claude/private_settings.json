@@ -8,15 +8,19 @@
     "commit-commands@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "agent-sdk-dev@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "semgrep@claude-plugins-official": true
+    "semgrep@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "pydantic-ai@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": false,
-  "effortLevel": "medium"
+  "effortLevel": "xhigh",
+  "editorMode": "vim"
 }
