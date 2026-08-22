@@ -66,6 +66,8 @@ bindkey '^r' history-incremental-search-backward
 # shell customization
 {{ if eq .role "work" }}
 [ -f "$HOME/.{{ .role }}.zshrc" ] && source "$HOME/.{{ .role }}.zshrc"
+{{- else }}
+[ -f "$HOME/.personal.zshrc" ] && source "$HOME/.personal.zshrc"
 {{- end }}
 
 # Hook tools into your shell.
